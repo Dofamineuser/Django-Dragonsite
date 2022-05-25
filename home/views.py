@@ -7,8 +7,9 @@ from blog.models import Blog
 
 def index(request):
     team = Team.objects.all()
-    blog = Blog.objects.all()
+    blog = list(Blog.objects.reverse()[1:])
     owner = OwnerInfo.objects.first()
+    print(blog)
     return render(request, 'home/index.html', {
         "team": team,
         "blog": blog,
