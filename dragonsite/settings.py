@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'imagekit',
-    'blog'
+    'blog',
+    'managefiles'
 
 ]
 
