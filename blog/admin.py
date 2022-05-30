@@ -3,8 +3,8 @@ from .models import Blog, BlogCat
 
 
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('title', 'month')
-    list_filter = ('organizer', 'month')
+    list_display = ('title', 'date')
+    list_filter = ('organizer', 'date')
     prepopulated_fields = {'slug': ('title',)}
 
 

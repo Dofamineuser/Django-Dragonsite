@@ -213,8 +213,8 @@
                             <img class="img-fluid w-100" src="{{ blog_item.home_image.url }}" alt="">
                             <div class="position-absolute bg-primary d-flex flex-column align-items-center justify-content-center"
                                 style="width: 80px; height: 80px; bottom: 0; left: 0;">
-                                <h6 class="text-uppercase mt-2 mb-n2">{{ blog_item.month }}</h6>
-                                <h1 class="m-0">{{ blog_item.day }}</h1>
+                                <h6 class="text-uppercase mt-2 mb-n2">{{ ukr_month | get_key:blog_item.date.month }}</h6>
+                                <h1 class="m-0">{{ blog_item.date.day }}</h1>
                             </div>
                         </div>
                         <div class="border border-top-0" style="padding: 30px;">

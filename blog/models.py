@@ -1,14 +1,14 @@
 from django.db import models
-from imagekit.models import ImageSpecField, ProcessedImageField
+from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 from home.models import Team
+from django.utils.timezone import now
 
 
 class Blog(models.Model):
     title = models.CharField(verbose_name="Опис одим словом", max_length=20, null=True)
     slug = models.SlugField(unique=True)
-    day = models.CharField(verbose_name="день", max_length=10, help_text="max 10 символів")
-    month = models.CharField(verbose_name="місяць", max_length=30, help_text="Вкажіть Словом")
+    date = models.DateTimeField(default=now, editable=True)
     description = models.TextField(verbose_name="Опис заходу")
     text = models.TextField(verbose_name="Повний опис заходу", blank=True, help_text="Необов'язкове поле")
     organizer = models.ForeignKey(Team, on_delete=models.CASCADE)
@@ -27,7 +27,7 @@ class Blog(models.Model):
                                   options={"quality": 50})
 
     def __str__(self):
-        return f'{self.title} ({self.month})'
+        return f'{self.title} ({self.date})'
 
 
 class BlogCat(models.Model):
