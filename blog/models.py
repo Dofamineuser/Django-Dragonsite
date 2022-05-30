@@ -2,17 +2,25 @@ from django.db import models
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 from home.models import Team
+from managefiles.models import File
 from django.utils.timezone import now
 
 
 class Blog(models.Model):
-    title = models.CharField(verbose_name="Опис одим словом", max_length=20, null=True)
+    title = models.CharField("Опис одим словом", max_length=20, null=True)
     slug = models.SlugField(unique=True)
-    date = models.DateTimeField(default=now, editable=True)
-    description = models.TextField(verbose_name="Опис заходу")
+    date = models.DateTimeField("Дата", default=now, editable=True)
+    description = models.TextField("Опис заходу")
     text = models.TextField(verbose_name="Повний опис заходу", blank=True, help_text="Необов'язкове поле")
-    organizer = models.ForeignKey(Team, on_delete=models.CASCADE)
-    image = models.ImageField(verbose_name="зображення блогу", upload_to='blog_images')
+    organizer = models.ForeignKey(Team, on_delete=models.CASCADE, verbose_name="Організатор")
+    file = models.ForeignKey(
+        File,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        help_text="Додавати необов'язково"
+    )
+    image = models.ImageField("зображення блогу", upload_to='blog_images')
     home_image = ImageSpecField(source="image",
                                 processors=[ResizeToFill(540, 304)],
                                 format="JPEG",

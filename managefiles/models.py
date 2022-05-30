@@ -9,3 +9,6 @@ class File(models.Model):
     text = models.TextField("Повний опис файлу")
     file = models.FileField(upload_to='downloads')
     organizer = models.ForeignKey(Team, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title

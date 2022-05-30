@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from blog.models import Blog
+from blog.views import ukr_month
 
 # Create your views here.
 
@@ -13,5 +14,6 @@ def index(request):
     return render(request, 'home/index.html', {
         "team": team,
         "blog": blog,
-        "owner": owner
+        "owner": owner,
+        'ukr_month': ukr_month
     })
